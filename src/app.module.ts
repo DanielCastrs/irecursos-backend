@@ -1,20 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
+import { Departamento } from './departamento/entities/departamento.entity';
+import { DepartamentoModule } from './departamento/departamento.module';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { Funcionario } from './funcionario/entities/funcionario.entity';
+import { FuncionarioModule } from './funcionario/funcionario.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [
+    TypeOrmModule.forRoot({
       type: `mysql`,
       host: `localhost`,
       port: 3306,
       username: `root`,
-      password: `root`,
+      password: `Sk8erboy12!`,
       database: `db_irecurso`,
-      entities: [],
+      entities: [Departamento, Usuario, Funcionario],
       synchronize: true,
-    }),],
+      logging: true,
+    }),
+    FuncionarioModule,
+    DepartamentoModule,
+    UsuarioModule,
+  ],
   controllers: [],
   providers: [],
 })
