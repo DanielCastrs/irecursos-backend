@@ -1,7 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsuarioModule } from './usuario/usuario.module';
 import { Departamento } from './departamento/entities/departamento.entity';
 import { DepartamentoModule } from './departamento/departamento.module';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { Funcionario } from './funcionario/entities/funcionario.entity';
+import { FuncionarioModule } from './funcionario/funcionario.module';
 
 @Module({
   imports: [
@@ -12,11 +16,13 @@ import { DepartamentoModule } from './departamento/departamento.module';
       username: `root`,
       password: `Sk8erboy12!`,
       database: `db_irecurso`,
-      entities: [Departamento],
+      entities: [Departamento, Usuario, Funcionario],
       synchronize: true,
       logging: true,
     }),
+    FuncionarioModule,
     DepartamentoModule,
+    UsuarioModule,
   ],
   controllers: [],
   providers: [],
