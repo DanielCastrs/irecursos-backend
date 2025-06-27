@@ -1,11 +1,11 @@
+import { Funcionario } from './../entities/funcionario.entity';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, ILike, Repository } from 'typeorm';
-import { Postagem } from '../entities/funcionario.entity';
 import { TemaService } from './../../tema/services/tema.service';
 
 @Injectable()
-export class PostagemService {
+export class FuncionarioService {
   constructor(
     @InjectRepository(Postagem)
     private postagemRepository: Repository<Postagem>,
