@@ -5,7 +5,7 @@ import { Funcionario } from './entities/funcionario.entity';
 import { FuncionarioService } from './services/funcionario.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Funcionario])],
+  imports: [TypeOrmModule.forFeature([Funcionario]), DepartamentoModule, UsuarioModule],
   providers: [FuncionarioService],
   controllers: [FuncionarioController],
   exports: [FuncionarioService],

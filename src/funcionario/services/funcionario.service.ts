@@ -14,7 +14,8 @@ export class FuncionarioService {
   async findAll(): Promise<Funcionario[]> {
     return await this.funcionarioRepository.find({
       relations: {
-      
+      usuario: true,
+      departamento: true
       },
     });
   }
@@ -23,6 +24,10 @@ export class FuncionarioService {
     const funcionario = await this.funcionarioRepository.findOne({
       where: {
         id,
+      },
+    relations: {
+      usuario: true,
+      departamento: true
       },
     });
 
@@ -36,6 +41,10 @@ export class FuncionarioService {
       where: {
         nome: ILike(`%${nome}%`),
       },
+      relations: {
+      usuario: true,
+      departamento: true
+      }
     });
   }
 
