@@ -1,68 +1,61 @@
 import { Funcionario } from './../entities/funcionario.entity';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, ILike, Repository } from 'typeorm';
-import { TemaService } from './../../tema/services/tema.service';
+import { DeleteResult, Repository } from 'typeorm';
+
 
 @Injectable()
 export class FuncionarioService {
   constructor(
-    @InjectRepository(Postagem)
-    private postagemRepository: Repository<Postagem>,
-    private temaService: TemaService,
+    @InjectRepository(Funcionario)
+    private funcionarioRepository: Repository<Funcionario>,
   ) {}
 
-  async findAll(): Promise<Postagem[]> {
-    return await this.postagemRepository.find({
+  async findAll(): Promise<Funcionario[]> {
+    return await this.funcionarioRepository.find({
       relations: {
-        tema: true,
+      
       },
     });
   }
 
-  async findById(id: number): Promise<Postagem> {
-    const postagem = await this.postagemRepository.findOne({
+  async findById(id: number): Promise<Funcionario> {
+    const funcionario = await this.funcionarioRepository.findOne({
       where: {
         id,
       },
-      relations: {
-        tema: true,
-      },
     });
 
-    if (!postagem)
-      throw new HttpException(`Postagem não encontrada!`, HttpStatus.NOT_FOUND);
-    return postagem;
+    if (!funcionario)
+      throw new HttpException(`Funcionario não encontrado!`, HttpStatus.NOT_FOUND);
+    return funcionario;
   }
 
-  async findAllByTitulo(titulo: string): Promise<Postagem[]> {
-    return await this.postagemRepository.find({
-      where: {
-        titulo: ILike(`%${titulo}%`),
-      },
-      relations: {
-        tema: true,
-      },
-    });
+  // async findAllByNome(nome: string): Promise<Postagem[]> {
+  //   return await this.postagemRepository.find({
+  //     where: {
+  //       titulo: ILike(`%${titulo}%`),
+  //     },
+  //     relations: {
+  //       tema: true,
+  //     },
+  //   });
+  // }
+
+  async create(funcionario: Funcionario): Promise<Funcionario> {
+
+    return await this.funcionarioRepository.save(funcionario);
   }
 
-  async create(postagem: Postagem): Promise<Postagem> {
-    await this.temaService.findById(postagem.tema.id);
+  async update(funcionario: Funcionario): Promise<Funcionario> {
+    await this.findById(funcionario.id);
 
-    return await this.postagemRepository.save(postagem);
-  }
-
-  async update(postagem: Postagem): Promise<Postagem> {
-    await this.findById(postagem.id);
-
-    await this.temaService.findById(postagem.tema.id);
-
-    return await this.postagemRepository.save(postagem);
+    return await this.funcionarioRepository.save(funcionario);
   }
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findById(id);
 
-    return await this.postagemRepository.delete(id);
+    return await this.funcionarioRepository.delete(id);
   }
 }
