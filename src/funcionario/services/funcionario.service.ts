@@ -31,24 +31,17 @@ export class FuncionarioService {
     return funcionario;
   }
 
-  // async findAllByNome(nome: string): Promise<Postagem[]> {
-  //   return await this.postagemRepository.find({
-  //     where: {
-  //       titulo: ILike(`%${titulo}%`),
-  //     },
-  //     relations: {
-  //       tema: true,
-  //     },
-  //   });
-  // }
 
   async create(funcionario: Funcionario): Promise<Funcionario> {
+    funcionario.salarioFinal=funcionario.salarioBase*funcionario.horasTrabalhadas
 
     return await this.funcionarioRepository.save(funcionario);
   }
 
   async update(funcionario: Funcionario): Promise<Funcionario> {
     await this.findById(funcionario.id);
+
+    funcionario.salarioFinal=funcionario.salarioBase*funcionario.horasTrabalhadas
 
     return await this.funcionarioRepository.save(funcionario);
   }

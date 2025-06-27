@@ -11,20 +11,24 @@ export class Funcionario {
   nome: string;
 
   @IsNotEmpty()
-  @Column({ length: 1000, nullable: false })
-  salarioBase: string;
+  @Column({ type: 'decimal', precision: 19, scale: 4, nullable: false })
+  salarioBase: number;
 
   @IsNotEmpty()
   @Column({ nullable: false })
   horasTrabalhadas: number;
 
-  // @ManyToOne(() => Tema, (tema) => tema.postagem, {
-  //   onDelete: 'CASCADE',
-  // })
-  // tema: Tema;
+  @Column({ type: 'decimal', precision: 19, scale: 4})
+  salarioFinal: number;
 
-  // @ManyToOne(() => Tema, (tema) => tema.postagem, {
-  //   onDelete: 'CASCADE',
-  // })
-  // tema: Tema;
+// @ManyToOne(() => Usuario, (tema) => tema.postagem, {
+//   onDelete: 'CASCADE',
+// })
+// tema: Tema;
+
+// @ManyToOne(() => Tema, (tema) => tema.postagem, {
+//   onDelete: 'CASCADE',
+// })
+// tema: Tema;
+ 
 }
