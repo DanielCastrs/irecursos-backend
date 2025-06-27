@@ -10,7 +10,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Funcionario } from "../entities/funcionario.entity";
+import { Funcionario } from '../entities/funcionario.entity';
 import { FuncionarioService } from '../services/funcionario.service';
 
 @Controller(`/funcionario`)
