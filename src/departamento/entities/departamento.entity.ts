@@ -9,4 +9,7 @@ export class Departamento {
   @IsNotEmpty()
   @Column({ length: 45, nullable: false })
   nome_departamento: string;
+
+  @OneToMany(() => Funcionario, (funcionario) => funcionario.departamento)
+  funcionario: Funcionario[]
 }
