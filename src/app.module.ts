@@ -14,7 +14,7 @@ import { FuncionarioModule } from './funcionario/funcionario.module';
       host: `localhost`,
       port: 3306,
       username: `root`,
-      password: `Sk8erboy12!`,
+      password: `root`,
       database: `db_irecurso`,
       entities: [Departamento, Usuario, Funcionario],
       synchronize: true,

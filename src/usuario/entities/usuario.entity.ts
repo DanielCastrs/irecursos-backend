@@ -1,4 +1,3 @@
-import { Usuario } from './usuario.entity';
 import { IsNotEmpty } from 'class-validator';
 import {
   Column,
@@ -6,12 +5,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 @Entity({ name: `tb_usuario` })
 export class Usuario {
-  static id(id: any) {
-    throw new Error('Method not implemented.');
-  }
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -31,7 +31,7 @@ export class UsuarioController {
 
   @Get(`/nome/:nome`)
   @HttpCode(HttpStatus.OK)
-  findAllByTitulo(@Param(``) nome: string): Promise<Usuario[]> {
+  findAllByNome(@Param(`nome`) nome: string): Promise<Usuario[]> {
     return this.usuarioService.findAllByNome(nome);
   }
 

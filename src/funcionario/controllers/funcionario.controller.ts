@@ -13,7 +13,7 @@ import {
 import { Funcionario } from '../entities/funcionario.entity';
 import { FuncionarioService } from '../services/funcionario.service';
 
-@Controller(`/funcionario`)
+@Controller(`/funcionarios`)
 export class FuncionarioController {
   constructor(private readonly FuncionarioService: FuncionarioService) {}
 

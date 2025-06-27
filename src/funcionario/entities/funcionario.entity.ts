@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Usuario } from './../';
-import { Departamento } from './../entities/departamento.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
+import { Departamento } from '../../departamento/entities/departamento.entity';
 
 @Entity({ name: `tb_funcionario` })
 export class Funcionario {
