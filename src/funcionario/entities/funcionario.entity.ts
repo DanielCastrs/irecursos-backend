@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: `tb_funcionario` })
 export class Funcionario {
@@ -21,14 +21,14 @@ export class Funcionario {
   @Column({ type: 'decimal', precision: 19, scale: 4})
   salarioFinal: number;
 
-// @ManyToOne(() => Usuario, (tema) => tema.postagem, {
-//   onDelete: 'CASCADE',
-// })
-// tema: Tema;
+@ManyToOne(() => Usuario, (usuario) => usuario.funcionario, {
+  onDelete: 'CASCADE',
+})
+usuario: Usuario;
 
-// @ManyToOne(() => Tema, (tema) => tema.postagem, {
-//   onDelete: 'CASCADE',
-// })
-// tema: Tema;
+@ManyToOne(() => Departamento, (departamento) => departamento.funcionario, {
+  onDelete: 'CASCADE',
+})
+departamento: Departamento;
  
 }

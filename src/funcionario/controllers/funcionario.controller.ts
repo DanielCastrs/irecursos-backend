@@ -1,54 +1,55 @@
-// import {
-//   Body,
-//   Controller,
-//   Delete,
-//   Get,
-//   HttpCode,
-//   HttpStatus,
-//   Param,
-//   ParseIntPipe,
-//   Post,
-//   Put,
-// } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { Funcionario } from "../entities/funcionario.entity";
+import { FuncionarioService } from '../services/funcionario.service';
 
+@Controller(`/funcionario`)
+export class FuncionarioController {
+  constructor(private readonly FuncionarioService: FuncionarioService) {}
 
-// @Controller(`/postagens`)
-// export class PostagemController {
-//   constructor(private readonly PostagemService: PostagemService) {}
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  findAll(): Promise<Funcionario[]> {
+    return this.FuncionarioService.findAll();
+  }
 
-//   @Get()
-//   @HttpCode(HttpStatus.OK)
-//   findAll(): Promise<Postagem[]> {
-//     return this.PostagemService.findAll();
-//   }
+  @Get(`/:id`)
+  @HttpCode(HttpStatus.OK)
+  findById(@Param(`id`, ParseIntPipe) id: number): Promise<Funcionario> {
+    return this.FuncionarioService.findById(id);
+  }
 
-//   @Get(`/:id`)
-//   @HttpCode(HttpStatus.OK)
-//   findById(@Param(`id`, ParseIntPipe) id: number): Promise<Postagem> {
-//     return this.PostagemService.findById(id);
-//   }
+  @Get(`/nome/:nome`)
+  @HttpCode(HttpStatus.OK)
+  findAllByNome(@Param(`nome`) nome: string): Promise<Funcionario[]> {
+    return this.FuncionarioService.findAllByNome(nome);
+  }
 
-//   @Get(`/titulo/:titulo`)
-//   @HttpCode(HttpStatus.OK)
-//   findAllByTitulo(@Param(`titulo`) titulo: string): Promise<Postagem[]> {
-//     return this.PostagemService.findAllByTitulo(titulo);
-//   }
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() funcionario: Funcionario): Promise<Funcionario> {
+    return this.FuncionarioService.create(funcionario);
+  }
 
-//   @Post()
-//   @HttpCode(HttpStatus.CREATED)
-//   create(@Body() postagem: Postagem): Promise<Postagem> {
-//     return this.PostagemService.create(postagem);
-//   }
+  @Put()
+  @HttpCode(HttpStatus.OK)
+  update(@Body() funcionario: Funcionario): Promise<Funcionario> {
+    return this.FuncionarioService.update(funcionario);
+  }
 
-//   @Put()
-//   @HttpCode(HttpStatus.OK)
-//   update(@Body() postagem: Postagem): Promise<Postagem> {
-//     return this.PostagemService.update(postagem);
-//   }
-
-//   @Delete(`/:id`)
-//   @HttpCode(HttpStatus.OK)
-//   delete(@Param(`id`, ParseIntPipe) id: number) {
-//     return this.PostagemService.delete(id);
-//   }
-// }
+  @Delete(`/:id`)
+  @HttpCode(HttpStatus.OK)
+  delete(@Param(`id`, ParseIntPipe) id: number) {
+    return this.FuncionarioService.delete(id);
+  }
+}
