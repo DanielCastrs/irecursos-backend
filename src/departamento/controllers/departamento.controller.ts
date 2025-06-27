@@ -10,46 +10,48 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Postagem } from '../entities/departamento.entity';
-import { PostagemService } from '../services/departamento.service';
+import { Departamento } from '../entities/departamento.entity';
+import { DepartamentoService } from './../services/departamento.service';
 
-@Controller(`/postagens`)
-export class PostagemController {
-  constructor(private readonly PostagemService: PostagemService) {}
+@Controller('/departamentos')
+export class DepartamentoController {
+  constructor(private readonly departamentoService: DepartamentoService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  findAll(): Promise<Postagem[]> {
-    return this.PostagemService.findAll();
+  findAll(): Promise<Departamento[]> {
+    return this.departamentoService.findAll();
   }
 
-  @Get(`/:id`)
+  @Get('/:id')
   @HttpCode(HttpStatus.OK)
-  findById(@Param(`id`, ParseIntPipe) id: number): Promise<Postagem> {
-    return this.PostagemService.findById(id);
+  findById(@Param('id', ParseIntPipe) id: number): Promise<Departamento> {
+    return this.departamentoService.findById(id);
   }
 
-  @Get(`/titulo/:titulo`)
+  @Get('/departamento/:departamento')
   @HttpCode(HttpStatus.OK)
-  findAllByTitulo(@Param(`titulo`) titulo: string): Promise<Postagem[]> {
-    return this.PostagemService.findAllByTitulo(titulo);
+  findAllByDepartamento(
+    @Param('departamento') departamento: string,
+  ): Promise<Departamento[]> {
+    return this.departamentoService.findAllByDepartamento(departamento);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() postagem: Postagem): Promise<Postagem> {
-    return this.PostagemService.create(postagem);
+  create(@Body() departamento: Departamento): Promise<Departamento> {
+    return this.departamentoService.create(departamento);
   }
 
   @Put()
   @HttpCode(HttpStatus.OK)
-  update(@Body() postagem: Postagem): Promise<Postagem> {
-    return this.PostagemService.update(postagem);
+  update(@Body() departamento: Departamento): Promise<Departamento> {
+    return this.departamentoService.update(departamento);
   }
 
-  @Delete(`/:id`)
-  @HttpCode(HttpStatus.OK)
-  delete(@Param(`id`, ParseIntPipe) id: number) {
-    return this.PostagemService.delete(id);
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.departamentoService.delete(id);
   }
 }
