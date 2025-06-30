@@ -118,4 +118,4 @@ test/
 Este projeto está licenciado sob os termos da [MIT License](LICENSE).
 
 ## 📌 Autores
-Brenndha Cabral | Daniel Souza | Kannanda Andrade | Monique Ohana | Rafael Santanna | Sara Silva
+Brenndha Cabral | Daniel Souza | Kannanda Andrade | Monique Ohana | Rafael Selles | Sara Silva
