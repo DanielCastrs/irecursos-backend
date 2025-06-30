@@ -2,97 +2,107 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# IRecursos 🚀
 
-## Description
+Sistema de gerenciamento de recursos humanos desenvolvido com [NestJS](https://nestjs.com/) e [TypeORM](https://typeorm.io/) utilizando banco de dados MySQL. 
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Descrição
 
-## Project setup
+O Irecursos é uma API RESTful para controle de usuários, funcionários e departamentos de uma organização. Permite o cadastro, consulta, atualização e remoção dessas entidades, além de relacionamentos entre elas.
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Funcionalidades
 
-```bash
-# development
-$ npm run start
+- Cadastro, listagem, busca, atualização e remoção de *Usuários*
+- Cadastro, listagem, busca, atualização e remoção de *Funcionários*
+- Cálculo automático do salário final (salárioFinal=salarioBase*horasTrabalhadas)
+- Cadastro, listagem, busca, atualização e remoção de *Departamentos*
+- Relacionamento entre funcionários, usuários e departamentos
+  
+---
 
-# watch mode
-$ npm run start:dev
+## Tecnologias Utilizadas
 
-# production mode
-$ npm run start:prod
-```
+- [NestJS](https://nestjs.com/)
+(framework Node.js)
+- [TypeORM](https://typeorm.io/)
+(ORM para TypeScripts)
+- [MySQL](https;//www.mysql.com/)
+(banco de dados relacional)
+- [Class Validator](https://github.com/typestack/class-validator/blob/develop/README.md)
+(validação de dados)
+- [Jest](https://jestjs.io/)
+(testes automatizados)
 
-## Run tests
+---
+
+## Instalação
+
+Clone o repositório e instale as dependências:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone <url-do-repositório>
+cd irecursos
+npm install
 ```
+---
+## Configuração
 
-## Deployment
+- Certifique-se de ter um banco de dados MySql rodando localmente.
+- Altere as configurações de conexão no arquivo src/app.module.ts se necessário:
+  
+ts
+// ...existing code...
+TypeOrmModule.forRoot({
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: 'root',
+  database: 'db_irecurso',
+  // ...existing code...
+}),
+// ...existing code...
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- O banco será sincronizado automaticamente ao iniciar a aplicação.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Como rodar o projeto 
+
+### Desenvolvimento
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Estrutura do Projeto
 
-## Resources
+src/
+  app.module.ts
+  main.ts
+  departamento/
+    controllers/
+    entities/
+    services/
+  funcionario/
+    controllers/
+    entities/
+    services/
+  usuario/
+    controllers/
+    entities/
+    services/
+test/
 
-Check out a few resources that may come in handy when working with NestJS:
+## Endpoints Principais
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- /usuarios-Gerenciamento de usuários
+- /funcionarios-Gerenciamento de funcionários
+- /departamentos-Gerenciamento de departamentos
 
-## Support
+## Licença
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
