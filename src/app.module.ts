@@ -1,30 +1,25 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
-import { Departamento } from './departamento/entities/departamento.entity';
 import { DepartamentoModule } from './departamento/departamento.module';
-import { Usuario } from './usuario/entities/usuario.entity';
-import { Funcionario } from './funcionario/entities/funcionario.entity';
 import { FuncionarioModule } from './funcionario/funcionario.module';
+import { AppController } from './app.controller';
+import { ProdService } from './data/service/prod.service';
+import { ConfigModule } from '@nestjs/config';
+import { DevService } from './data/service/dev.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: `mysql`,
-      host: `localhost`,
-      port: 3306,
-      username: `root`,
-      password: `root`,
-      database: `db_irecurso`,
-      entities: [Departamento, Usuario, Funcionario],
-      synchronize: true,
-      logging: true,
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useClass: DevService,
+      imports: [ConfigModule],
     }),
     FuncionarioModule,
     DepartamentoModule,
     UsuarioModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

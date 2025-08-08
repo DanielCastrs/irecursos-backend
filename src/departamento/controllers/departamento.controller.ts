@@ -12,7 +12,9 @@ import {
 } from '@nestjs/common';
 import { Departamento } from '../entities/departamento.entity';
 import { DepartamentoService } from './../services/departamento.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Departamentos')
 @Controller('/departamentos')
 export class DepartamentoController {
   constructor(private readonly departamentoService: DepartamentoService) {}

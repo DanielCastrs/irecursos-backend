@@ -1,18 +1,20 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    HttpCode,
-    HttpStatus,
-    Param,
-    ParseIntPipe,
-    Post,
-    Put,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
 } from '@nestjs/common';
 import { Funcionario } from '../entities/funcionario.entity';
 import { FuncionarioService } from '../services/funcionario.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Funcionarios')
 @Controller(`/funcionarios`)
 export class FuncionarioController {
   constructor(private readonly FuncionarioService: FuncionarioService) {}
